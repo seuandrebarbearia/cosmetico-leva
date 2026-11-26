@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Confirmação por e-mail | Cosmético Leva</title>
+  <link rel="stylesheet" href="/estilos.css">
+  <script type="module" src="/confirmar-email.js"></script>
+</head>
+<body>
+  <main class="wrap panel-main">
+    <section class="panel-card login-card">
+      <h1 id="confirm-title">Confirmação por e-mail</h1>
+      <p id="confirm-text" role="status">Verificando o link…</p>
+      <form id="confirm-form" method="post" hidden>
+        <div id="confirm-pin-group" hidden><label for="new-pin">Nova senha de 4 dígitos</label><input id="new-pin" name="pin" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{4}" maxlength="4" disabled></div>
+        <button class="button primary" id="confirm-submit" type="submit">Confirmar e abrir pedido</button>
+      </form>
+      <p class="error" id="confirm-error" role="alert" hidden></p>
+      <a class="button outline space-top" href="/meus-pedidos">Meus pedidos</a>
+      <a class="button outline space-top" href="/">Voltar à vitrine</a>
+    </section>
+  </main>
+</body>
+</html>

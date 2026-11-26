@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Meus pedidos | Cosmético Leva</title>
+  <link rel="stylesheet" href="/estilos.css">
+  <script type="module" src="/meus-pedidos.js"></script>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Cosmético Leva, início"><span class="brand-mark" aria-hidden="true">L</span><span>Cosmético <strong>Leva</strong></span></a>
+    <nav class="header-actions" aria-label="Atalhos da conta"><a class="button outline" href="/">Voltar à vitrine</a><button class="button outline" id="customer-logout" type="button" hidden>Sair</button></nav>
+  </div></header>
+  <main class="wrap panel-main">
+    <div class="section-heading"><h1>Meus pedidos</h1><p id="account-email" hidden></p></div>
+    <p id="customer-loading" role="status">Carregando…</p>
+    <p id="customer-error" class="error" role="alert" hidden></p>
+    <section id="customer-login" class="panel-card login-card" hidden>
+      <h2>Entre com seu e-mail</h2>
+      <form method="post" data-pin-login>
+        <label for="account-login-email">E-mail</label><input id="account-login-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <label for="account-pin">Senha de 4 dígitos</label><input id="account-pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" pattern="[0-9]{4}" maxlength="4" required>
+        <button class="button primary" type="submit">Entrar</button>
+      </form>
+      <button class="button outline space-top" type="button" data-show-reset>Criar ou recuperar senha</button>
+      <form method="post" data-reset-pin hidden>
+        <label for="reset-email">E-mail para recuperação</label><input id="reset-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <button class="button primary" type="submit">Enviar link</button>
+        <button class="button outline" type="button" data-cancel-reset>Voltar ao login</button>
+      </form>
+      <p data-login-error class="error" role="alert" hidden></p>
+      <p data-login-feedback role="status"></p>
+    </section>
+    <section id="customer-orders" aria-label="Histórico de compras" hidden>
+      <p id="confirmed-order" class="order-notice" role="status" hidden></p>
+      <p id="customer-empty" hidden>Nenhum pedido nesta conta.</p>
+      <div id="customer-order-list" class="order-list"></div>
+    </section>
+  </main>
+</body>
+</html>

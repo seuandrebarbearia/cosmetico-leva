@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Veja o catálogo da Cosmético Leva e faça seu pedido online.">
+  <title>Cosmético Leva | Vitrine</title>
+  <link rel="stylesheet" href="/estilos.css">
+  <script type="module" src="/loja.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Cosmético Leva, início"><span class="brand-mark" aria-hidden="true">L</span><span>Cosmético <strong>Leva</strong></span></a>
+      <nav class="header-actions shop-actions" aria-label="Atalhos da loja">
+        <a class="button outline" href="/meus-pedidos">Meus pedidos</a>
+        <a class="button outline" href="https://wa.me/5548996495663" target="_blank" rel="noopener">WhatsApp</a>
+        <button class="button primary" id="cart-open" type="button">Carrinho <span id="cart-count" class="cart-count">0</span></button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <div>
+          <h1 id="hero-title">Sua vitrine<br>de cosméticos<span>.</span></h1>
+          <p>Escolha seus produtos e envie seu pedido à loja.</p>
+          <a class="button primary" href="#vitrine">Ver produtos</a>
+        </div>
+        <div class="hero-art" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="wrap catalog" id="vitrine" aria-labelledby="catalog-title">
+      <div class="section-heading"><h2 id="catalog-title">Produtos</h2><p>59 produtos · R$ 190,00 por unidade</p></div>
+      <noscript>Ative o JavaScript para ver os produtos e fazer seu pedido.</noscript>
+      <div class="product-grid" id="products"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div><p class="footer-brand">Cosmético <strong>Leva</strong></p><p>Endereço a confirmar</p></div>
+      <div class="footer-actions"><a class="button outline" href="https://maps.app.goo.gl/438XPZYRGkepTfveA" target="_blank" rel="noopener">Como chegar</a><a href="/painel">Painel do proprietário</a></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="cart-dialog" aria-labelledby="cart-title">
+    <div class="dialog-inner">
+      <div class="dialog-heading"><h2 id="cart-title">Seu carrinho</h2><button id="cart-close" class="icon-button" type="button" aria-label="Fechar carrinho">×</button></div>
+      <section id="cart-view">
+        <p id="cart-empty">Seu carrinho está vazio.</p>
+        <ul class="cart-items" id="cart-items" aria-label="Produtos no carrinho"></ul>
+        <div class="total" id="cart-total-line" hidden><span>Total</span><strong id="cart-total"></strong></div>
+        <div class="dialog-actions"><button class="button outline" id="shop-more" type="button">Voltar às compras</button><button class="button primary" id="checkout-open" type="button" hidden>Finalizar compra</button></div>
+      </section>
+      <form id="checkout-form" method="post" hidden>
+        <p>Depois de enviar os dados, abra o link que chegar por e-mail para confirmar seu pedido.</p>
+        <label for="customer">Nome</label><input id="customer" name="customer" autocomplete="name" required minlength="2" maxlength="100">
+        <div id="checkout-cpf-group"><label for="cpf">CPF</label><input id="cpf" name="cpf" inputmode="numeric" maxlength="14" required></div>
+        <label for="checkout-email">E-mail</label><input id="checkout-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        <button class="text-button" id="checkout-change-email" type="button" hidden>Usar outro e-mail</button>
+        <div id="checkout-pin-group">
+          <label for="checkout-pin">Senha de 4 dígitos</label><input id="checkout-pin" name="pin" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{4}" maxlength="4" required>
+          <p class="space-top">No primeiro pedido, escolha sua senha. Se já comprou, use a sua senha atual ou <a href="/meus-pedidos">recupere o acesso</a>.</p>
+        </div>
+        <label for="whatsapp">WhatsApp com DDD</label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" required maxlength="29" placeholder="(48) 99999-9999">
+        <fieldset class="checkout-address">
+          <legend>Endereço de entrega</legend>
+          <div class="address-fields">
+            <div><label for="cep">CEP</label><input id="cep" name="cep" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}-?[0-9]{3}" maxlength="9" required></div>
+            <div class="address-street"><label for="street">Rua</label><input id="street" name="street" autocomplete="address-line1" maxlength="150" required></div>
+            <div><label for="number">Número</label><input id="number" name="number" maxlength="20" required></div>
+            <div class="address-wide"><label for="district">Bairro</label><input id="district" name="district" autocomplete="address-level3" maxlength="100" required></div>
+            <div class="address-wide"><label for="city">Cidade</label><input id="city" name="city" autocomplete="address-level2" maxlength="100" required></div>
+            <div><label for="uf">UF</label><input id="uf" name="uf" autocomplete="address-level1" autocapitalize="characters" pattern="[A-Za-z]{2}" maxlength="2" required></div>
+            <div class="address-full"><label for="complement">Complemento (opcional)</label><input id="complement" name="complement" autocomplete="address-line2" maxlength="120"></div>
+          </div>
+        </fieldset>
+        <p id="checkout-error" class="error" role="alert" hidden></p>
+        <div class="total"><span>Total</span><strong id="checkout-total"></strong></div>
+        <div class="dialog-actions"><button class="button outline" id="back-to-cart" type="button">Voltar ao carrinho</button><button class="button primary" id="checkout-submit" type="submit">Enviar pedido</button></div>
+      </form>
+      <section id="confirmation" hidden>
+        <p id="confirmation-email" tabindex="-1"></p>
+        <p>O pedido será registrado quando você confirmar pelo link. Depois, a loja abrirá os detalhes do pedido.</p>
+        <div class="dialog-actions"><button class="button outline" id="checkout-edit" type="button">Voltar aos dados</button><button class="button primary" id="finish" type="button">Voltar à vitrine</button></div>
+      </section>
+    </div>
+  </dialog>
+</body>
+</html>

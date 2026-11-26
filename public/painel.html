@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pedidos | Cosmético Leva</title>
+  <link rel="stylesheet" href="/estilos.css">
+  <script type="module" src="/painel.js"></script>
+</head>
+<body class="panel-page">
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Cosmético Leva, início"><span class="brand-mark" aria-hidden="true">L</span><span>Cosmético <strong>Leva</strong></span></a>
+    <nav class="header-actions" aria-label="Navegação do painel">
+      <a class="button outline" id="panel-back" href="/painel" hidden>Voltar aos pedidos</a>
+      <button class="button outline" id="logout" type="button" hidden>Sair</button>
+    </nav>
+  </div></header>
+  <main class="wrap panel-main">
+    <form id="login-form" class="panel-card login-card" method="post" hidden>
+      <h1>Painel do proprietário</h1>
+      <label for="user">Usuário</label><input id="user" name="user" autocomplete="username" maxlength="100" required>
+      <label for="password">Senha</label><input id="password" name="password" type="password" autocomplete="current-password" maxlength="256" required>
+      <p id="login-error" class="error" role="alert" hidden></p>
+      <button id="sign-in" class="button primary" type="submit">Entrar</button>
+    </form>
+    <p id="panel-status" role="status">Carregando…</p>
+    <p id="panel-error" class="error" role="alert" hidden></p>
+    <p id="new-order-notice" class="order-notice print-hide" role="status" aria-live="polite" hidden></p>
+    <section id="orders-view" hidden>
+      <div class="section-heading"><h1>Pedidos</h1><button class="button outline" id="reload" type="button">Atualizar pedidos</button></div>
+      <p id="orders-empty" hidden>Nenhum pedido recebido.</p>
+      <ul id="orders" class="order-list"></ul>
+    </section>
+    <section id="order-view" class="panel-card order-detail" hidden>
+      <div class="section-heading">
+        <div><p class="print-brand">Cosmético Leva</p><h1 id="order-title" tabindex="-1"></h1><p id="order-date"></p></div>
+        <div class="header-actions print-hide">
+          <a id="print-link" class="button primary" href="/painel" target="_blank" rel="noopener" hidden>Imprimir pedido</a>
+          <button id="print-button" class="button primary" type="button" hidden>Imprimir pedido</button>
+        </div>
+      </div>
+      <dl class="order-meta">
+        <div><dt>Cliente</dt><dd id="order-customer"></dd></div><div><dt>WhatsApp</dt><dd id="order-whatsapp"></dd></div>
+        <div id="order-email-group" hidden><dt>E-mail</dt><dd id="order-email"></dd></div>
+        <div id="order-address-group" hidden><dt>Endereço de entrega</dt><dd id="order-address"></dd></div>
+      </dl>
+      <table class="order-table">
+        <caption class="sr-only">Itens do pedido</caption>
+        <thead><tr><th scope="col">Produto</th><th scope="col">Qtd.</th><th scope="col">Subtotal</th></tr></thead>
+        <tbody id="order-items"></tbody>
+      </table>
+      <p class="total"><span>Total</span><strong id="order-total"></strong></p>
+      <section class="order-progress print-hide" aria-labelledby="progress-title">
+        <h2 id="progress-title">Andamento</h2>
+        <p id="current-order-status" class="order-badge"></p>
+        <ol id="order-history" class="status-history"></ol>
+        <form id="status-form" method="post" hidden>
+          <label for="next-status">Atualizar status</label><select id="next-status" name="status" required></select>
+          <fieldset id="shipping-fields" hidden>
+            <legend>Rastreio</legend>
+            <label for="carrier">Transportadora</label><input id="carrier" name="carrier" maxlength="100" disabled>
+            <label for="tracking">Código ou link de rastreio</label><input id="tracking" name="tracking" maxlength="600" disabled>
+          </fieldset>
+          <button class="button primary space-top" type="submit">Salvar status</button>
+        </form>
+        <div id="order-tracking" class="tracking-info"></div>
+        <p id="tracking-email-status" role="status" hidden></p>
+        <div class="header-actions space-top" id="shipping-actions" hidden>
+          <button class="button outline" type="button" id="resend-email" hidden>Reenviar e-mail</button>
+          <a class="button outline" id="send-whatsapp" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+        </div>
+        <p id="order-update-error" class="error" role="alert" hidden></p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

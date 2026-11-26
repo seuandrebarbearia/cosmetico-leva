@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS pedidos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at TEXT NOT NULL,
+  customer TEXT NOT NULL,
+  whatsapp TEXT NOT NULL,
+  items TEXT NOT NULL,
+  total INTEGER NOT NULL,
+  request_id TEXT NOT NULL UNIQUE
+) STRICT;
